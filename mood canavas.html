@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoodCanvas</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    transition: background-color 0.8s ease;
+    color: white;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  p {
+    max-width: 500px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  button {
+    margin-top: 1.5em;
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: rgba(255,255,255,0.4);
+  }
+</style>
+</head>
+<body>
+  <h1>MoodCanvas 🎨</h1>
+  <p id="quote">Click anywhere to set the mood...</p>
+  <button onclick="changeMood()">Change Mood</button>
+
+<script>
+  const quotes = [
+    "Every day is a fresh canvas. Paint it bright.",
+    "Happiness is homemade.",
+    "Colors speak louder than words.",
+    "Your mood is the brush, your life is the canvas.",
+    "Small steps, big changes.",
+    "Find beauty in every shade."
+  ];
+
+  function randomColor() {
+    return `hsl(${Math.floor(Math.random()*360)}, 70%, 50%)`;
+  }
+
+  function changeMood() {
+    const color = randomColor();
+    document.body.style.backgroundColor = color;
+    document.getElementById("quote").textContent =
+      quotes[Math.floor(Math.random() * quotes.length)];
+  }
+
+  // Allow click anywhere
+  document.body.addEventListener("click", (e) => {
+    if (e.target.tagName !== "BUTTON") {
+      changeMood();
+    }
+  });
+</script>
+</body>
+</html>
